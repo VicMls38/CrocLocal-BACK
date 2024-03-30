@@ -4,4 +4,4 @@ node_modules/
 
 models/
 
-database.js
+DB.ini
