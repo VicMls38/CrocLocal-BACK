@@ -8,10 +8,10 @@ let configDB = iniparser.parseSync('./DB.ini')
 //Création de la connexion à la bdd
 let mysqlconnexion = mysql.createConnection({
     host:configDB['CrocLocal']['HOST'],
-    user:configDB['CrocLocal']['USER'],
+    user:configDB['CrocLocal']['USERNAME'],
     password:configDB['CrocLocal']['PASSWORD'],
     database:configDB['CrocLocal']['DATABASE'],
-    port:configDB['CrocLocal']['port']
+    port:configDB['CrocLocal']['PORT']
    })
    mysqlconnexion.connect((err) => {
     if (!err) console.log('BDD connectée.')
