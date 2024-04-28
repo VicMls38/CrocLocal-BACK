@@ -20,30 +20,6 @@ module.exports = {
         });
     },
 
-    Inscription: async (req, res) => {
-        const { username, email, password } = req.body;
-      
-        // Se connecter à la base de données
-        const connection = await connectToDatabase();
-      
-        try {
-          // Insérer l'utilisateur dans la base de données
-          await connection.execute(
-            'INSERT INTO Consommateur (Nom_Consommateur, Prenom_Consommateur, Email_Consommateur, Password_Consommateur) VALUES (?, ?, ?, ?)',
-            [nom, prenom, email, password]
-          );
-      
-          // Répondre avec un statut 201 (créé)
-          res.status(201).json({ message: 'User registered successfully' });
-        } catch (error) {
-          // En cas d'erreur, répondre avec un statut 400 (mauvaise requête)
-          res.status(400).json({ error: error.message });
-        } finally {
-          // Fermer la connexion à la base de données
-          await connection.end();
-        }
-    }
-
     
 };
 
