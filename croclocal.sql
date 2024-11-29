@@ -199,7 +199,7 @@ CREATE TABLE IF NOT EXISTS `producteurs` (
   `cp_producteurs` varchar(50) NOT NULL,
   `ville_producteurs` varchar(150) NOT NULL,
   `adresse_producteurs` varchar(255) NOT NULL,
-  `description_producteurs` text NOT NULL,
+  `description_producteurs` text DEFAULT NULL,
   `img_producteurs` longblob DEFAULT NULL,
   PRIMARY KEY (`siret_producteurs`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

@@ -9,7 +9,6 @@ module.exports = (req, res, next) => {
     try {
         
         token = token.split(' ')[1]
-        console.log(token)
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
         req.user = decoded; // Attacher les données décodées à la requête
         next();

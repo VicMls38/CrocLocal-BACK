@@ -18,7 +18,6 @@ let mysqlconnexion = mysql.createConnection({
     if (!err) console.log('BDD connectée.')
     else console.log('BDD connexion échouée \n Erreur: '+JSON.stringify(err))
 })
-mysqlconnexion.query = util.promisify(mysqlconnexion.query);
 
 //Exportation du module de connexion à la bdd
 module.exports = mysqlconnexion;
