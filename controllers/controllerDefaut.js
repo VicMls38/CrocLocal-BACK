@@ -7,11 +7,13 @@ module.exports = {
         res.json({ code: "Hello !" });
     },
 
-    test: (req, res) => {
-        res.json({ code: "GG c'est secure !" });
+    testP: (req, res) => {
+        res.json({ code: "GG Mon producteur de cock !" });
+    },
+
+    testC: (req, res) => {
+        res.json({ code: "GG Mon consommateur de merde !" });
     }
-    
-    
 };
 
 
