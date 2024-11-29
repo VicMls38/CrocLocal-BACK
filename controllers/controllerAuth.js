@@ -1,6 +1,6 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const UserModel = require('../models/modelAuth'); // Modèle des utilisateurs
+const ModelAuth = require('../models/modelAuth'); // Modèle des utilisateurs
 
 module.exports = {
     // Enregistrement d'un utilisateur
@@ -8,7 +8,7 @@ module.exports = {
         const { email, password, last_name, first_name, tel, cp, ville, adresse } = req.body;
         try {
             const hashedPassword = await bcrypt.hash(password, 10);
-            UserModel.registerConsommateur(email, hashedPassword, last_name, first_name, tel, cp, ville, adresse, (err, result) => {
+            ModelAuth.registerConsommateur(email, hashedPassword, last_name, first_name, tel, cp, ville, adresse, (err, result) => {
                 if (err) {
                     return res.status(500).json({ error: 'Erreur lors de l\'enregistrement de l\'utilisateur.' });
                 }
@@ -37,7 +37,7 @@ module.exports = {
     loginConsommateur: async (req, res) => {
         const { email, password } = req.body;
         try {
-            UserModel.getConsommateurByEmail(email, async (err, user) => {
+            ModelAuth.getConsommateurByEmail(email, async (err, user) => {
                 if (err || !user) {
                     return res.status(401).json({ error: 'email Identifiants invalides.' });
                 }
@@ -70,7 +70,7 @@ module.exports = {
         const { siret, ape, enseigne, email, password, last_name, first_name, tel, cp, ville, adresse } = req.body;
         try {
             const hashedPassword = await bcrypt.hash(password, 10);
-            UserModel.registerProducteur(siret, ape, enseigne, email, hashedPassword, last_name, first_name, tel, cp, ville, adresse, (err, result) => {
+            ModelAuth.registerProducteur(siret, ape, enseigne, email, hashedPassword, last_name, first_name, tel, cp, ville, adresse, (err, result) => {
                 if (err) {
                     return res.status(500).json({ error: 'Erreur lors de l\'enregistrement de l\'utilisateur.' });
                 }
@@ -102,7 +102,7 @@ module.exports = {
     loginProducteur: async (req, res) => {
         const { email, password } = req.body;
         try {
-            UserModel.getProducteurByEmail(email, async (err, user) => {
+            ModelAuth.getProducteurByEmail(email, async (err, user) => {
                 if (err || !user) {
                     return res.status(401).json({ error: 'email Identifiants invalides.' });
                 }
@@ -112,7 +112,7 @@ module.exports = {
                 }
 
                 // Générer le token JWT
-                const token = jwt.sign({ id: user.id, role: "producteur" }, process.env.JWT_SECRET, { expiresIn: '1h' });
+                const token = jwt.sign({ id: user.siret_producteurs, role: "producteur" }, process.env.JWT_SECRET, { expiresIn: '1h' });
                 res.json({ message: 'Connexion réussie.', token });
             });
         } catch (error) {

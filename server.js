@@ -22,12 +22,16 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 const RouteurDefaut = require('./routes/routeDefaut')
 const RouteurAuth = require('./routes/routeAuth')
+const RouteurAvis = require('./routes/routeAvis')
+
 
 /*-----------------*/
 
 
 app.use('/', RouteurDefaut);
 app.use('/auth', RouteurAuth);
+
+app.use('/avis', RouteurAvis);
 
 
 
