@@ -35,4 +35,15 @@ module.exports = {
             }
         });
     },
+
+    daleteAvis: function(id_avis, callback) {
+        var sqlQuery = "DELETE FROM avis WHERE id_avis = ?";
+        db.query(sqlQuery, [siret_producteurs, id_consommateurs, note_avis, date_avis, message_avis], function(err, result) {
+            if (err) {
+                return callback(err, null);
+            } else {
+                return callback(null, result);
+            }
+        });
+    },
 }
